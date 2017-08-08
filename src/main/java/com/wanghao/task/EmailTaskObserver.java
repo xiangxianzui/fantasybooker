@@ -13,6 +13,8 @@ import java.util.Observer;
 public class EmailTaskObserver implements Observer {
     private static final Logger logger = Logger.getLogger(EmailTaskObserver.class);
 
+    private static final int MAX_RETRY = 3;//最多重发次数
+
     @Override
     public void update(Observable o, Object arg) {
         //重启线程
@@ -22,10 +24,21 @@ public class EmailTaskObserver implements Observer {
         } catch (InterruptedException e) {
             logger.error(e.getStackTrace());
         }
-        EmailTask emailTask = new EmailTask((EmailInfoBean)arg);
-        EmailTaskObserver taskObserver = new EmailTaskObserver();
-        //需要将观察者类加入到被观察者的观察者列表中
-        emailTask.addObserver(taskObserver);
-        new Thread(emailTask).start();
+        if(arg != null){
+            int retry = ((EmailInfoBean)arg).getRetry();
+            logger.info("当前重发邮件次数："+retry);
+            if(retry <= MAX_RETRY){
+                retry++;
+                ((EmailInfoBean) arg).setRetry(retry);
+                EmailTask emailTask = new EmailTask((EmailInfoBean)arg);
+                EmailTaskObserver taskObserver = new EmailTaskObserver();
+                //需要将观察者类加入到被观察者的观察者列表中
+                emailTask.addObserver(taskObserver);
+                new Thread(emailTask).start();
+            }
+            else{
+                logger.info("重发次数超过限制："+MAX_RETRY+"次");
+            }
+        }
     }
 }

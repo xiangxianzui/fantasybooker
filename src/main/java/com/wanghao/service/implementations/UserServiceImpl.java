@@ -84,6 +84,7 @@ public class UserServiceImpl implements UserService {
                 EmailInfoBean emailInfoBean = new EmailInfoBean();
                 emailInfoBean.setEmailType(EmailType.REGISTER_SUCCESS.value());
                 emailInfoBean.setUserInfoModel(newUser);
+                emailInfoBean.setRetry(0);
                 sendEmail(emailInfoBean);
                 return result;
             }
@@ -216,6 +217,7 @@ public class UserServiceImpl implements UserService {
             EmailInfoBean emailInfoBean = new EmailInfoBean();
             emailInfoBean.setUserInfoModel(userInfoModel);
             emailInfoBean.setEmailType(EmailType.FIND_PASSWORD.value());
+            emailInfoBean.setRetry(0);
             sendEmail(emailInfoBean);
         }
         return result;

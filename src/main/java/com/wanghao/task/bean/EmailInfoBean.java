@@ -10,6 +10,16 @@ public class EmailInfoBean {
 
     private int emailType;
 
+    private int retry;//当前的重发邮件次数
+
+    public int getRetry() {
+        return retry;
+    }
+
+    public void setRetry(int retry) {
+        this.retry = retry;
+    }
+
     public UserInfoModel getUserInfoModel() {
         return userInfoModel;
     }
