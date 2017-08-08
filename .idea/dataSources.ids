@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="localhost - fantasybooker@localhost" uuid="e920016a-01f3-4829-8827-a3ea3df47482">
+    <database-info product="MySQL" version="5.7.19" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.40 ( Revision: 402933ef52cad9aa82624e80acbea46e3a701ce6 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="fantasybooker"/>
+    <table name="book_info" schema="" catalog="fantasybooker" type="TABLE">
+      <column name="id" sqlType="BIGINT UNSIGNED" precision="20" scale="0" nullable="false" jdbcType="-5" remarks="aWQ=" autoIncrement="true"/>
+      <column name="bookname" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" def="Jyc=" remarks="5Lmm5ZCN"/>
+      <column name="author" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" def="Jyc=" remarks="5L2c6ICF"/>
+      <column name="description" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12" def="Jyc=" remarks="5o+P6L+w"/>
+      <column name="price" sqlType="DECIMAL" precision="10" scale="2" nullable="false" jdbcType="3" def="MC4wMA==" remarks="5Lu35qC8"/>
+      <column name="amount" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA==" remarks="5Ymp5L2Z6LSn6YeP"/>
+      <column name="discount" sqlType="DECIMAL" precision="10" scale="2" nullable="false" jdbcType="3" def="MC4wMA==" remarks="5oqY5omj"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="idx_author" unique="false" columns="author"/>
+      <index name="idx_bookname" unique="false" columns="bookname"/>
+    </table>
+    <table name="user_info" schema="" catalog="fantasybooker" type="TABLE">
+      <column name="id" sqlType="BIGINT UNSIGNED" precision="20" scale="0" nullable="false" jdbcType="-5" remarks="aWQ=" autoIncrement="true"/>
+      <column name="nickname" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" def="Jyc=" remarks="5pi156ew"/>
+      <column name="password" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" def="Jyc=" remarks="5a+G56CB"/>
+      <column name="email" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" def="Jyc=" remarks="6YKu566x"/>
+      <column name="phone" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" def="Jyc=" remarks="5pS26LSn55S16K+d"/>
+      <column name="address" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" def="Jyc=" remarks="5pS26LSn5Zyw5Z2A"/>
+      <column name="user_code" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" def="Jyc=" remarks="55So5oi35ZSv5LiA5qCH6K+G56CB"/>
+      <column name="register_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" def="JzIwMTctMDEtMDEgMDA6MDA6MDAn" remarks="5rOo5YaM5pe26Ze0"/>
+      <column name="activated" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA==" remarks="MDrmnKrmv4DmtLvvvJsxOua/gOa0uw=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="uniq_email" unique="true" columns="email"/>
+      <index name="uniq_nickname" unique="true" columns="nickname"/>
+      <index name="uniq_user_code" unique="true" columns="user_code"/>
+    </table>
+  </data-source>
+</component>
