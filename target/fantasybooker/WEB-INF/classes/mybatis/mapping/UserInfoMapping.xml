@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanghao.db.dao.UserInfoDao">
+
+    <sql id="fields">
+		id,nickname,password,email,phone,address,user_code as userCode,register_time as registerTime,activated
+	</sql>
+
+    <insert id="save" parameterType="UserInfoModel" keyProperty="id" useGeneratedKeys="true">
+        insert into user_info(nickname,password,email,phone,address,user_code,register_time,activated)
+        values(#{nickname},#{password},#{email},#{phone},#{address},#{userCode},#{registerTime},#{activated})
+    </insert>
+
+    <select id="findById" resultType="UserInfoModel">
+        select
+        <include refid="fields"/>
+        from user_info where id = #{id}
+    </select>
+
+    <select id="findByNickname" resultType="UserInfoModel">
+        select
+        <include refid="fields"/>
+        from user_info where nickname = #{nickname}
+    </select>
+
+    <select id="findByEmail" resultType="UserInfoModel">
+        select
+        <include refid="fields"/>
+        from user_info where email = #{email}
+    </select>
+
+    <select id="queryAll" resultType="UserInfoModel">
+        select
+        <include refid="fields"/>
+        from user_info
+    </select>
+
+    <update id="updateActivatedByNickname">
+        UPDATE user_info
+        SET activated = #{activated}
+        WHERE nickname = #{nickname}
+    </update>
+
+    <update id="updatePasswordByNickname">
+        UPDATE user_info
+        SET password = #{newPassword}
+        WHERE nickname = #{nickname}
+    </update>
+
+</mapper>

@@ -1,0 +1,53 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--扫描base-pack下面或者子包下面的Java文件，
+    如果扫描到有@Component @Controller@Service等这些注解的类，
+    则把这些类注册为bean -->
+    <context:component-scan base-package="com.wanghao"/>
+
+    <mvc:annotation-driven/>
+
+    <!--将静态文件指定到某个文件夹中统一处理-->
+    <!-- /resources/**表示resources中的所有文件夹包括子文件夹 -->
+    <!-- /resources/*表示resources文件夹中所有内容不包含子文件夹中内容 -->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <!-- prefix定义了所需访问的文件路径前缀，suffix表示要访问的文件的后缀，这里为.jsp -->
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 定义拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 拦截/user/login，如果已经登录则直接跳到主页，避免重复登录 -->
+            <mvc:mapping path="/user/login" />
+            <bean class="com.wanghao.springmvc.LoginInterceptor"></bean>
+        </mvc:interceptor>
+
+        <!-- Session失效拦截 -->
+        <mvc:interceptor>
+            <!-- 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller -->
+            <mvc:mapping path="/**" />
+            <!-- 不需要拦截的地址 -->
+            <mvc:exclude-mapping path="/user/login" />
+            <mvc:exclude-mapping path="/user/logout" />
+            <mvc:exclude-mapping path="/user/register" />
+            <mvc:exclude-mapping path="/user/activate" />
+            <mvc:exclude-mapping path="/user/password/*" />
+            <mvc:exclude-mapping path="/index" />
+            <mvc:exclude-mapping path="/error" />
+            <bean class="com.wanghao.springmvc.SessionTimeoutInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+</beans>
