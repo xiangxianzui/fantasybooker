@@ -16,6 +16,7 @@
     <context:annotation-config/>
 
     <import resource="spring-orm.xml"/>
+    <!--<import resource="task-context.xml"/>-->
 
     <context:component-scan base-package="com.wanghao">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
