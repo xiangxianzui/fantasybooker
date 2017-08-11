@@ -4,12 +4,13 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by wanghao on 8/5/17.
  */
-public class UserInfoModel {
+public class UserInfoModel implements Serializable {
 
     private long id;
 
