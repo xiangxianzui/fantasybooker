@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserInfoDao userInfoDao;
 
-    @Autowired
-    private HttpServletRequest req;
+/*    @Autowired
+    private HttpServletRequest req;*/
 
     @Override
     public String register(UserInfoModel newUser) {
@@ -92,7 +92,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(UserInfoModel loginUser) {
+    public String login(UserInfoModel loginUser, HttpServletRequest req) {
         String result;
         InitUserInfoModel(loginUser);
         String nickname = loginUser.getNickname();

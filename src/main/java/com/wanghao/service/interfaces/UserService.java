@@ -2,6 +2,7 @@ package com.wanghao.service.interfaces;
 
 import com.wanghao.db.model.UserInfoModel;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -9,15 +10,15 @@ import javax.servlet.http.HttpSession;
  */
 
 public interface UserService {
-    public String register(UserInfoModel userInfoModel);
+    String register(UserInfoModel userInfoModel);
 
-    public String login(UserInfoModel curUser);
+    String login(UserInfoModel loginUser, HttpServletRequest req);
 
-    public String logout(HttpSession session);
+    String logout(HttpSession session);
 
-    public String activate(String nickName, String userCode);
+    String activate(String nickName, String userCode);
 
-    public String findPsw(UserInfoModel findPswUser);
+    String findPsw(UserInfoModel findPswUser);
 
-    public String resetPsw(UserInfoModel resetPswUser);
+    String resetPsw(UserInfoModel resetPswUser);
 }

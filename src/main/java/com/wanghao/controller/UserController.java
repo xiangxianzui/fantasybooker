@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -65,11 +66,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(ModelMap model, @Validated @ModelAttribute(Constant.LOGIN_USER) UserInfoModel loginUser, BindingResult br) {//验证结果一定要紧跟@Validated参数后面写
+    public String login(HttpServletRequest req, ModelMap model, @Validated @ModelAttribute(Constant.LOGIN_USER) UserInfoModel loginUser, BindingResult br) {//验证结果一定要紧跟@Validated参数后面写
         if (br.hasErrors()) {
             return "user/login";
         } else {
-            String result = userService.login(loginUser);
+            String result = userService.login(loginUser, req);
             if (result.equals(LoginMsg.SUCCESS_NICKNAME.extValue())) {
                 return "index";
             }

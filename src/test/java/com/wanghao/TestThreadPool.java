@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 // 指定的运行runner，并且把你所指定的Runner作为参数传递给它
-@ContextConfiguration(locations = "classpath*:spring.xml")
+@ContextConfiguration(locations = {"classpath:spring.xml"})
 public class TestThreadPool extends AbstractJUnit4SpringContextTests {
     private static int produceTaskSleepTime = 10;
 
@@ -28,8 +28,7 @@ public class TestThreadPool extends AbstractJUnit4SpringContextTests {
         return threadPoolTaskExecutor;
     }
 
-    public void setThreadPoolTaskExecutor(
-            ThreadPoolTaskExecutor threadPoolTaskExecutor) {
+    public void setThreadPoolTaskExecutor(ThreadPoolTaskExecutor threadPoolTaskExecutor) {
         this.threadPoolTaskExecutor = threadPoolTaskExecutor;
     }
 
