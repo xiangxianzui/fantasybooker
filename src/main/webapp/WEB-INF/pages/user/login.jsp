@@ -8,16 +8,41 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
-<head>
-    <title>用户登录</title>
-</head>
+<jsp:include page="../common/head.jsp"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login.style.css" type="text/css" charset="utf-8" />
 <body>
-<f:form method="post" modelAttribute="loginUser">
-    Nickname: <f:input path="nickname"/><br>
-    Email: <f:input path="email"/><br>
-    Password: <f:password path="password"/><br>
-    <input type="submit" value="登录">
-</f:form>
-<br><h3>${result}</h3>
+<div id="login-content">
+    <div class="login-header">
+        <span class="title">fantasybooker</span>
+    </div>
+    <f:form method="post" modelAttribute="loginUser">
+        <div class="login-input-box">
+            <span class="icon icon-user"></span>
+            <f:input path="nickname"/>
+        </div>
+        <div class="login-input-box">
+            <span class="icon icon-email"></span>
+            <f:input path="email"/>
+        </div>
+        <div class="login-input-box">
+            <span class="icon icon-password"></span>
+            <f:password path="password"/>
+        </div>
+        <div class="remember-box">
+            <label><input type="checkbox">&nbsp;记住我</label>
+        </div>
+        <div class="login-input-box">
+            <input class="login-button" type="submit" value="登录">
+        </div>
+    </f:form>
+
+    <div class="logon-box">
+        <a href="password/find">忘记密码?</a>
+        |
+        <a href="register">注册账户</a>
+    </div>
+</div> <!-- /#login-content -->
+<div class="result-msg">${result}</div>
+<jsp:include page="../common/foot.jsp"/>
 </body>
 </html>

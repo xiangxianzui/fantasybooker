@@ -106,41 +106,41 @@ public class UserServiceImpl implements UserService {
             return result;
         }
         if(userInfoModel1 != null){
-            if(userInfoModel1.getActivated() == ActivateStatus.ACTIVATE_YES.value()){
-                if(userInfoModel1.getPassword().equals(password)){
+            if(userInfoModel1.getPassword().equals(password)){
+                if(userInfoModel1.getActivated() == ActivateStatus.ACTIVATE_YES.value()){
                     req.getSession().setAttribute(Constant.LOGIN_USER, userInfoModel1);
                     result = LoginMsg.SUCCESS_NICKNAME.extValue();
                     logger.info(result+"["+Thread.currentThread().getName()+"]");
                     return result;
                 }
-                else {
-                    result = LoginMsg.FAIL_PASSWORD.extValue();
+                else{
+                    result = LoginMsg.FAIL_NOT_ACTIVATE.extValue();
                     logger.info(result+"["+Thread.currentThread().getName()+"]");
                     return result;
                 }
             }
-            else {
-                result = LoginMsg.FAIL_NOT_ACTIVATE.extValue();
+            else{
+                result = LoginMsg.FAIL_PASSWORD.extValue();
                 logger.info(result+"["+Thread.currentThread().getName()+"]");
                 return result;
             }
         }
         if(userInfoModel2 != null){
-            if(userInfoModel2.getActivated() == ActivateStatus.ACTIVATE_YES.value()){
-                if(userInfoModel2.getPassword().equals(password)){
+            if(userInfoModel2.getPassword().equals(password)){
+                if(userInfoModel2.getActivated() == ActivateStatus.ACTIVATE_YES.value()){
                     req.getSession().setAttribute(Constant.LOGIN_USER, userInfoModel2);
                     result = LoginMsg.SUCCESS_EMAIL.extValue();
                     logger.info(result+"["+Thread.currentThread().getName()+"]");
                     return result;
                 }
-                else {
-                    result = LoginMsg.FAIL_PASSWORD.extValue();
+                else{
+                    result = LoginMsg.FAIL_NOT_ACTIVATE.extValue();
                     logger.info(result+"["+Thread.currentThread().getName()+"]");
                     return result;
                 }
             }
-            else {
-                result = LoginMsg.FAIL_NOT_ACTIVATE.extValue();
+            else{
+                result = LoginMsg.FAIL_PASSWORD.extValue();
                 logger.info(result+"["+Thread.currentThread().getName()+"]");
                 return result;
             }

@@ -2,13 +2,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
-<title>主页</title>
+<jsp:include page="./common/head.jsp"/>
 <body>
-<h1>welcome
-<c:choose>
-    <c:when test="${loginUser == null}">guest</c:when>
-    <c:otherwise>${loginUser.nickname}</c:otherwise>
-</c:choose>
-</h1>
+<div id="background">
+    <div id="page">
+        <jsp:include page="./common/header.jsp"/>
+        <div id="contents">
+            <div id="main">
+                <div id="adbox">
+                    <img src="/resources/images/sale.jpg" alt="Img" />
+                </div>
+            </div>
+            <div id="featured">
+                <ul>
+                    <li><img src="/resources/images/shirt-red.jpg" alt="shirt" /></li>
+                    <li><img src="/resources/images/shirt-orange.jpg" alt="shirt" /></li>
+                    <li><img src="/resources/images/shirt-green.jpg" alt="shirt" /></li>
+                    <li class="last"><img src="/resources/images/shirt-blue.jpg" alt="shirt" /></li>
+                </ul>
+                <a href="shop.html" class="button">shop here!</a>
+            </div>
+        </div> <!-- /#contents -->
+        <jsp:include page="./common/footer.jsp"/>
+    </div> <!-- /#page -->
+</div> <!-- /#background -->
+<jsp:include page="./common/foot.jsp"/>
 </body>
 </html>

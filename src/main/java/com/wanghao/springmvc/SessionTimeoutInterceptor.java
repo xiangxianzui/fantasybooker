@@ -46,7 +46,7 @@ public class SessionTimeoutInterceptor implements HandlerInterceptor {
         //session中获取用户信息
         Object obj = session.getAttribute(Constant.LOGIN_USER);
         if (obj == null || "".equals(obj.toString())) {
-            logger.info("当前session已经失效");
+            logger.info("session已经失效，请求被拦截");
             System.out.println(request.getSession().getServletContext().getContextPath());
             response.sendRedirect(request.getSession().getServletContext().getContextPath()+LOGIN_URL);
             return false;
