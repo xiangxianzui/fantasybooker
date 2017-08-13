@@ -26,6 +26,5 @@
         <jsp:include page="./common/footer.jsp"/>
     </div> <!-- /#page -->
 </div> <!-- /#background -->
-<jsp:include page="./common/foot.jsp"/>
 </body>
 </html>

@@ -5,10 +5,11 @@ package com.wanghao.service.enums;
  */
 public enum FindPswMsg {
     SUCCESS(0, "重置密码成功"),
-    SUCCESS_EMAIL(1, "发送找回密码邮件"),
+    SUCCESS_EMAIL(1, "成功发送找回密码邮件"),
     FAIL_PARAMS(2, "请求参数错误"),
     FAIL_NO_USER(3, "用户不存在"),
-    FAIL_NOT_MATCH(4, "name和code不匹配");
+    FAIL_NOT_MATCH(4, "name和code不匹配"),
+    FAIL_PASSWORD_EMPTY(5, "新密码不能为空");
 
     public final int VALUE;
     public final String EXTVALUE;

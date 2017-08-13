@@ -440,8 +440,12 @@ img {
 .result-msg {
     text-align: center;
     margin: 10px;
-    color: #000000;
+    color: #ff7d0a;
     font-size: small;
     display: block;
+}
+
+.hide {
+    display: none;
 }
 

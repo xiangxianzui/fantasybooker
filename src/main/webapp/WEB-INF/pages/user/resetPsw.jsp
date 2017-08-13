@@ -8,16 +8,38 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
-<head>
-    <title>重置密码</title>
-</head>
+<jsp:include page="../common/head.jsp"/>
+<title>重置密码 - fantasybooker</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login.style.css" type="text/css" charset="utf-8" />
+
 <body>
+<div id="login-content">
+    <div class="login-header">
+        <span class="title">fantasybooker</span>
+    </div>
     <f:form method="post" modelAttribute="resetPswUser">
-        Nickname: <f:input path="nickname"/><br>
-        Usercode: <f:input path="userCode"/><br>
-        New Password: <f:password path="password"/><br>
-        <input type="submit" value="重置密码">
+        <div class="login-input-box" style="display: none">
+            <span class="icon icon-user"></span>
+            <f:input path="nickname"/>
+        </div>
+        <div class="login-input-box" style="display: none">
+            <span class="icon icon-email"></span>
+            <f:input path="userCode"/>
+        </div>
+        新密码：
+        <div class="login-input-box">
+            <span class="icon icon-password"></span>
+            <f:password path="password"/>
+        </div>
+        <div class="login-input-box">
+            <input class="login-button" type="submit" value="重置密码">
+        </div>
     </f:form>
-<br><h3>${result}</h3>
+
+    <div class="logon-box">
+        <a href="../login">立即登录</a>
+    </div>
+</div> <!-- /#login-content -->
+<div class="result-msg">${result}</div>
 </body>
 </html>

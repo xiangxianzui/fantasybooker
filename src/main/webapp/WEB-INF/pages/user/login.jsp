@@ -9,6 +9,7 @@
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
 <jsp:include page="../common/head.jsp"/>
+<title>登录 - fantasybooker</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login.style.css" type="text/css" charset="utf-8" />
 <body>
 <div id="login-content">
@@ -43,6 +44,5 @@
     </div>
 </div> <!-- /#login-content -->
 <div class="result-msg">${result}</div>
-<jsp:include page="../common/foot.jsp"/>
 </body>
 </html>

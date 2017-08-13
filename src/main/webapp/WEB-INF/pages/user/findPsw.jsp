@@ -8,14 +8,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
-<head>
-    <title>找回密码</title>
-</head>
+<jsp:include page="../common/head.jsp"/>
+<title>找回密码 - fantasybooker</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login.style.css" type="text/css" charset="utf-8" />
 <body>
+<div id="login-content">
+    <div class="login-header">
+        <span class="title">fantasybooker</span>
+    </div>
     <f:form method="post" modelAttribute="findPswUser">
-        Email: <f:input path="email"/><br>
-        <input type="submit" value="找回密码">
+        <div class="login-input-box">
+            <span class="icon icon-email"></span>
+            <f:input path="email"/>
+        </div>
+        <div class="login-input-box">
+            <input class="login-button" type="submit" value="发送密码到我的邮箱">
+        </div>
     </f:form>
-<br><h3>${result}</h3>
+    <div class="logon-box">
+        <a href="../login">返回登录</a>
+    </div>
+</div> <!-- /#login-content -->
+<div class="result-msg">${result}</div>
 </body>
 </html>

@@ -17,6 +17,7 @@ import com.wanghao.task.bean.EmailInfoBean;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -229,27 +230,33 @@ public class UserServiceImpl implements UserService {
         String nickName = resetPswUser.getNickname();
         String userCode = resetPswUser.getUserCode();
         String newPassword = resetPswUser.getPassword();
-        if(nickName != null && userCode != null && newPassword != null){
-            UserInfoModel user = userInfoDao.findByNickname(nickName);
-            if(user == null){
+        if(StringUtils.isEmpty(newPassword)){
+            result = FindPswMsg.FAIL_PASSWORD_EMPTY.extValue();
+            logger.info(result+"["+Thread.currentThread().getName()+"]");
+        }
+        else{
+            if(nickName != null && userCode != null){
+                UserInfoModel user = userInfoDao.findByNickname(nickName);
+                if(user == null){
+                    result = FindPswMsg.FAIL_PARAMS.extValue();
+                    logger.info(result+"["+Thread.currentThread().getName()+"]");
+                }
+                else {
+                    if(user.getUserCode().equals(userCode)){
+                        userInfoDao.updatePasswordByNickname(nickName, newPassword);
+                        result = FindPswMsg.SUCCESS.extValue();
+                        logger.info(result+"["+Thread.currentThread().getName()+"]");
+                    }
+                    else{
+                        result = FindPswMsg.FAIL_NOT_MATCH.extValue();
+                        logger.info(result+"["+Thread.currentThread().getName()+"]");
+                    }
+                }
+            }
+            else{
                 result = FindPswMsg.FAIL_PARAMS.extValue();
                 logger.info(result+"["+Thread.currentThread().getName()+"]");
             }
-            else {
-                if(user.getUserCode().equals(userCode)){
-                    userInfoDao.updatePasswordByNickname(nickName, newPassword);
-                    result = FindPswMsg.SUCCESS.extValue();
-                    logger.info(result+"["+Thread.currentThread().getName()+"]");
-                }
-                else{
-                    result = FindPswMsg.FAIL_NOT_MATCH.extValue();
-                    logger.info(result+"["+Thread.currentThread().getName()+"]");
-                }
-            }
-        }
-        else{
-            result = FindPswMsg.FAIL_PARAMS.extValue();
-            logger.info(result+"["+Thread.currentThread().getName()+"]");
         }
         return result;
     }

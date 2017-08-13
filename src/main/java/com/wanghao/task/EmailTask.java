@@ -1,5 +1,6 @@
 package com.wanghao.task;
 
+import com.wanghao.common.Constant;
 import com.wanghao.service.enums.EmailType;
 import com.wanghao.task.bean.EmailInfoBean;
 import org.apache.log4j.Logger;
@@ -25,9 +26,9 @@ public class EmailTask extends Observable implements Runnable {
 
     private static final String TO_NAME = "用户";
 
-    private static final String FROM_EMAIL = "wh15895877701@126.com";
+    private static final String FROM_EMAIL = Constant.EMAIL_ACCOUNT;
 
-    private static final String FROM_PASSWORD = "hunter17@SEU";
+    private static final String FROM_PASSWORD = Constant.EMAIL_PASSWORD;
 
     private EmailInfoBean emailInfoBean;
 
@@ -36,10 +37,10 @@ public class EmailTask extends Observable implements Runnable {
     private static String passwordUrl = "";
 
     public EmailTask(EmailInfoBean emailInfoBean) {
-        activationUrl = "http://localhost:8080/user/activate?name="
+        activationUrl = Constant.ACTIVATION_BASE_URL + "?name="
                 +emailInfoBean.getUserInfoModel().getNickname()
                 +"&code="+emailInfoBean.getUserInfoModel().getUserCode();
-        passwordUrl = "http://localhost:8080/user/password/reset?name="
+        passwordUrl = Constant.PASSWORD_BASE_URL + "?name="
                 +emailInfoBean.getUserInfoModel().getNickname()
                 +"&code="+emailInfoBean.getUserInfoModel().getUserCode();
         this.emailInfoBean = emailInfoBean;
