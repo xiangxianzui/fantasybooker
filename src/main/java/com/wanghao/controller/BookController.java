@@ -24,9 +24,8 @@ public class BookController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView list(@RequestParam(value="page",required=true) int page){
-        List<BookInfoModel> books = bookService.listAll();
         int limit = Constant.PAGINATION_LIMIT;
-        int totalSize = books.size();
+        int totalSize = bookService.getBookCount();
         int pageNum = (totalSize%limit==0) ? totalSize/limit : totalSize/limit+1;
         if(page<=0){
             page = 1;
@@ -34,14 +33,12 @@ public class BookController {
         if(page>pageNum){
             page = pageNum;
         }
-        int beginIdx = ((page-1)*limit)%totalSize;
-        int endIdx = (beginIdx+limit)>totalSize ? totalSize : beginIdx+limit;
+        int offset = ((page-1)*limit)%totalSize;
+        List<BookInfoModel> books = bookService.listPagination(limit, offset);
         ModelAndView mav = new ModelAndView("book/index");
         mav.addObject("books", books);
         mav.addObject("page", page);
         mav.addObject("pageNum", pageNum);
-        mav.addObject("beginIdx", beginIdx);
-        mav.addObject("endIdx", endIdx);
         return mav;
     }
 }

@@ -9,4 +9,9 @@ import java.util.List;
  */
 public interface BookService {
     List<BookInfoModel> listAll();
+
+    List<BookInfoModel> listPagination(int limit, int offset);
+
+    //得到book_info表中一共有多少条数据
+    int getBookCount();
 }

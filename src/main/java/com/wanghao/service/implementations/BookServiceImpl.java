@@ -23,4 +23,17 @@ public class BookServiceImpl implements BookService {
     public List<BookInfoModel> listAll() {
         return bookInfoDao.queryAll();
     }
+
+    @Override
+    public List<BookInfoModel> listPagination(int limit, int offset) {
+        if(limit<0 || offset<0){
+            return null;
+        }
+        return bookInfoDao.queryPagination(limit, offset);
+    }
+
+    @Override
+    public int getBookCount() {
+        return bookInfoDao.getCount();
+    }
 }

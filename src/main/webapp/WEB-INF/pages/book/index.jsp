@@ -13,9 +13,7 @@
 
 <c:set var="page" value="${page}"/>
 <c:set var="pageNum" value="${pageNum}"/>
-<c:set var="beginIdx" value="${beginIdx}"/>
-<c:set var="endIdx" value="${endIdx}"/>
-<c:set var="currentBooks" value="${books.subList(beginIdx, endIdx)}"/>
+<c:set var="books" value="${books}"/>
 
 <table class="table table-hover table-responsive table-striped table-bordered">
     <thead>
@@ -26,7 +24,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="book" items="${currentBooks}">
+    <c:forEach var="book" items="${books}">
         <tr>
             <td>${book.bookname}</td>
             <td>${book.author}</td>

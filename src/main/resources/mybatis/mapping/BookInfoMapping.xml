@@ -23,4 +23,18 @@
         from book_info
     </select>
 
+    <select id="queryPagination" resultType="BookInfoModel">
+        select
+        <include refid="fields"/>
+        from book_info
+        limit #{limit}
+        offset #{offset}
+    </select>
+
+    <select id="getCount" resultType="Integer">
+        select
+        COUNT(id)
+        from book_info
+    </select>
+
 </mapper>

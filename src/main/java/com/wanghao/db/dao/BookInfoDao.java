@@ -14,4 +14,10 @@ public interface BookInfoDao {
     BookInfoModel findById(@Param("id") long id);
 
     List<BookInfoModel> queryAll();
+
+    //分页查询
+    List<BookInfoModel> queryPagination(@Param("limit") int limit, @Param("offset") int offset);
+
+    //得到book_info表一共有多少条数据
+    int getCount();
 }

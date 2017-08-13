@@ -25,7 +25,8 @@ public class Constant {
     /* EmailTask相关 结束 */
 
     /* 分页相关 结束 */
-    //每页展示10条数据
-    public static final int PAGINATION_LIMIT = 1;
+    //前端每页展示10条数据
+    public static final int PAGINATION_LIMIT = 3;
+
     /* 分页相关 结束 */
 }
