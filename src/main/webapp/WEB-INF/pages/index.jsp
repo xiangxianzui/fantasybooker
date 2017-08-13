@@ -2,11 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
-<jsp:include page="./common/head.jsp"/>
+<jsp:include page="common/_head.jsp"/>
 <body>
 <div id="background">
     <div id="page">
-        <jsp:include page="./common/header.jsp"/>
+        <jsp:include page="common/_header.jsp"/>
         <div id="contents">
             <div id="main">
                 <div id="adbox">
@@ -23,7 +23,7 @@
                 <a href="shop.html" class="button">shop here!</a>
             </div>
         </div> <!-- /#contents -->
-        <jsp:include page="./common/footer.jsp"/>
+        <jsp:include page="common/_footer.jsp"/>
     </div> <!-- /#page -->
 </div> <!-- /#background -->
 </body>

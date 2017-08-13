@@ -23,4 +23,9 @@ public class Constant {
 
     public static final String PASSWORD_BASE_URL = "http://fantasybooker.com/user/password/reset";
     /* EmailTask相关 结束 */
+
+    /* 分页相关 结束 */
+    //每页展示10条数据
+    public static final int PAGINATION_LIMIT = 1;
+    /* 分页相关 结束 */
 }

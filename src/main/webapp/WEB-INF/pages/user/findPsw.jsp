@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 <html>
-<jsp:include page="../common/head.jsp"/>
+<jsp:include page="../common/_head.jsp"/>
 <title>找回密码 - fantasybooker</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login.style.css" type="text/css" charset="utf-8" />
 <body>

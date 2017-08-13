@@ -25,9 +25,8 @@ CREATE TABLE `book_info` (
   `author` varchar(50) NOT NULL default '' COMMENT '作者',
   `description` varchar(100) NOT NULL default '' COMMENT '描述',
   `price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '价格',
-  `amount` tinyint(4) NOT NULL DEFAULT 0 COMMENT '剩余货量',
+  `amount` int(10) NOT NULL DEFAULT 0 COMMENT '剩余货量',
   `discount` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '折扣',
   PRIMARY KEY (`id`),
-  INDEX `idx_bookname` (`bookname`),
-  INDEX `idx_author` (`author`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='书籍信息表';
+  INDEX `idx_bookname_author` (`bookname`, `author`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='图书信息表';
