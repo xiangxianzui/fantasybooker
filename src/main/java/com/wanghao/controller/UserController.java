@@ -104,12 +104,12 @@ public class UserController {
     public String logout(HttpSession session) {
         String result = userService.logout(session);
         if(result.equals(LogoutMsg.SUCCESS.extValue())){
-            return "index";
+            return "redirect:../index";
         }
         if(result.equals(LogoutMsg.FAIL.extValue())){
-            return "index";
+            return "redirect:../index";
         }
-        return "index";
+        return "redirect:../index";
     }
 
     @RequestMapping(value = "/activate", method = RequestMethod.GET)
