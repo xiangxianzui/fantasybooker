@@ -9,8 +9,8 @@
 <div id="footer">
     <div id="description">
         <div>
-            <a href="index.html" class="logo"></a>
-            <span>&copy; Copyright &copy; 2017. <a href="index.html">hunter.wang</a> <br>All rights reserved</span>
+            <a href="/index" class="logo"></a>
+            <span>&copy; Copyright &copy; 2017. <a href="/index">hunter.wang</a> <br>All rights reserved</span>
         </div>
         <p>
             This website template has been designed by <a href="http://sc.chinaz.com/">Free Website Templates</a> for you, for free. You can replace all this text with your own text.
@@ -19,7 +19,7 @@
         </p>
     </div>
     <div class="navigation">
-        <a href="index.html">Home</a>|
+        <a href="/index">Home</a>|
         <a href="about.html">About</a>|
         <a href="blog.html">Blog</a>|
         <a href="shop.html">Shop</a>|

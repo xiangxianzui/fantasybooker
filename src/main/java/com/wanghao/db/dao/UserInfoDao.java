@@ -17,9 +17,14 @@ public interface UserInfoDao {
 
     UserInfoModel findByEmail(@Param("email") String email);
 
+    UserInfoModel findByUserCode(@Param("userCode") String userCode);
+
     List<UserInfoModel> queryAll();
 
     void updateActivatedByNickname(@Param("nickname") String nickname, @Param("activated") int activated);
 
     void updatePasswordByNickname(@Param("nickname") String nickName, @Param("newPassword") String newPassword);
+
+    void updatePhoneAddressByUserCode(@Param("newPhone") String newPhone, @Param("newAddress") String newAddress,
+                                      @Param("userCode") String userCode);
 }

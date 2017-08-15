@@ -1,7 +1,6 @@
 package com.wanghao.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -12,8 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/error")
 public class ErrorController {
     @RequestMapping(method = RequestMethod.GET)
-    public String handleErrorCode(ModelMap model) {
-        //model.addAttribute("errorCode", "Hello world!");
-        return "error";
+    public String _other() {
+        return "error/other";
+    }
+
+    @RequestMapping(value = "/404", method = RequestMethod.GET)
+    public String _404(){
+        return "error/404";
+    }
+
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    public String _403(){
+        return "error/403";
     }
 }

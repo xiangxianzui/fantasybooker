@@ -17,6 +17,7 @@ public class UserInfoModel implements Serializable {
     @NotEmpty(message = "昵称不能为空")
     private String nickname;
 
+    @NotEmpty(message = "密码不能为空")
     @Size(min = 1, max = 10, message = "密码长度：1~10")
     private String password;
 

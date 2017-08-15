@@ -15,7 +15,6 @@ import com.wanghao.task.EmailTask;
 import com.wanghao.task.EmailTaskObserver;
 import com.wanghao.task.bean.EmailInfoBean;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -258,6 +257,26 @@ public class UserServiceImpl implements UserService {
                 logger.info(result+"["+Thread.currentThread().getName()+"]");
             }
         }
+        return result;
+    }
+
+    @Override
+    public UserInfoModel viewUserDetail(String userCode) {
+        if(!StringUtils.isEmpty(userCode)){
+            UserInfoModel userInfoModel = userInfoDao.findByUserCode(userCode);
+            return userInfoModel;
+        }
+        return null;
+    }
+
+    @Override
+    public String updateUserDetail(UserInfoModel loginUser) {
+        String result;
+        String userCode = loginUser.getUserCode();
+        String newPhone = loginUser.getPhone();
+        String newAddress = loginUser.getAddress();
+        userInfoDao.updatePhoneAddressByUserCode(newPhone, newAddress, userCode);
+        result = "success";
         return result;
     }
 

@@ -21,4 +21,8 @@ public interface UserService {
     String findPsw(UserInfoModel findPswUser);
 
     String resetPsw(UserInfoModel resetPswUser);
+
+    UserInfoModel viewUserDetail(String userCode);
+
+    String updateUserDetail(UserInfoModel userInfoModel);
 }

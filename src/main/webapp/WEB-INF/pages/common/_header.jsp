@@ -14,16 +14,22 @@
         <a href="http://sc.chinaz.com/" target="_blank" class="vimeo"></a>
     </span>
     <span id="infos">
-        <a href="">
-            <c:choose>
-                <c:when test="${loginUser == null}">guest</c:when>
-                <c:otherwise>${loginUser.nickname}</c:otherwise>
-            </c:choose>
-        </a>|<a href="">View Bags</a>
+        <c:choose>
+            <c:when test="${loginUser == null}">
+                <a href="/user/login">登录</a>
+                |
+                <a href="/user/register">注册</a>
+            </c:when>
+            <c:otherwise>
+                <a href="<c:url value="/user/${loginUser.userCode}" />">${loginUser.nickname}</a>
+                |
+                <a href="/user/logout">退出</a>
+            </c:otherwise>
+        </c:choose>
     </span>
-    <a href="index.html" id="logo"></a> <!-- /#logo -->
+    <a href="/index" id="logo"></a> <!-- /#logo -->
     <ul id="navigation">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="/index">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="shop.html">Shop</a></li>

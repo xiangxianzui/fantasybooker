@@ -20,4 +20,7 @@ public interface BookInfoDao {
 
     //得到book_info表一共有多少条数据
     int getCount();
+
+    //根据searchword模糊查询
+    List<BookInfoModel> queryBySearchword(@Param("searchword") String searchword, @Param("limit") int limit, @Param("offset") int offset);
 }

@@ -7,6 +7,8 @@ public class Constant {
     /* UserController相关 开始 */
     public static final String LOGIN_USER = "loginUser";
 
+    public static final String REMEMBER_ME = "rememberMe";
+
     public static final String REGISTER_USER = "registerUser";
 
     public static final String FIND_PSW_USER = "findPswUser";
@@ -26,7 +28,10 @@ public class Constant {
 
     /* 分页相关 结束 */
     //前端每页展示10条数据
-    public static final int PAGINATION_LIMIT = 3;
+    public static final int PAGINATION_LIMIT_SHOW = 3;
+
+    //后端查数据库每次100条
+    public static final int PAGINATION_LIMIT = 50;
 
     /* 分页相关 结束 */
 }

@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,20 +63,25 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login() {
-        return new ModelAndView("user/login").addObject(Constant.LOGIN_USER, new UserInfoModel());
+        UserInfoModel userInfoModel = new UserInfoModel();
+        ModelAndView mav = new ModelAndView("user/login");
+        mav.addObject(Constant.LOGIN_USER, userInfoModel);
+        return mav;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(HttpServletRequest req, ModelMap model, @Validated @ModelAttribute(Constant.LOGIN_USER) UserInfoModel loginUser, BindingResult br) {//验证结果一定要紧跟@Validated参数后面写
+    public String login(HttpServletRequest req, ModelMap model,
+                        @Validated @ModelAttribute(Constant.LOGIN_USER) UserInfoModel loginUser,
+                        BindingResult br) {//验证结果一定要紧跟@Validated参数后面写
         if (br.hasErrors()) {
             return "user/login";
         } else {
             String result = userService.login(loginUser, req);
             if (result.equals(LoginMsg.SUCCESS_NICKNAME.extValue())) {
-                return "index";
+                return "redirect:../index";
             }
             if (result.equals(LoginMsg.SUCCESS_EMAIL.extValue())) {
-                return "index";
+                return "redirect:../index";
             }
             if (result.equals(LoginMsg.FAIL_NO_USER.extValue())) {
                 model.addAttribute("result", result);
@@ -137,5 +143,28 @@ public class UserController {
         String result = userService.resetPsw(resetPswUser);
         model.addAttribute("result", result);
         return "user/resetPsw";
+    }
+
+    @RequestMapping(value = "/{userCode}", method = RequestMethod.GET)
+    public ModelAndView viewUserDetail(@PathVariable String userCode){
+        UserInfoModel loginUser = userService.viewUserDetail(userCode);
+        if(loginUser != null){
+            ModelAndView mav = new ModelAndView("user/detail");
+            mav.addObject(Constant.LOGIN_USER, loginUser);
+            return mav;
+        }
+        else{
+            ModelAndView mav = new ModelAndView("error/other");
+            return mav;
+        }
+    }
+
+    @RequestMapping(value = "/{userCode}", method = RequestMethod.POST)
+    public String updateUserDetail(ModelMap model,
+                                   @PathVariable String userCode,
+                                   @ModelAttribute(Constant.LOGIN_USER) UserInfoModel loginUser){
+        String result = userService.updateUserDetail(loginUser);
+        model.addAttribute("result", result);
+        return "user/detail";
     }
 }

@@ -44,9 +44,10 @@
             <mvc:exclude-mapping path="/user/activate" />
             <mvc:exclude-mapping path="/user/password/*" />
             <mvc:exclude-mapping path="/index" />
-            <mvc:exclude-mapping path="/error" />
+            <mvc:exclude-mapping path="/error/**" />
             <mvc:exclude-mapping path="/resources/**" />
             <mvc:exclude-mapping path="/book/**" />
+            <mvc:exclude-mapping path="/admin/**" />
             <bean class="com.wanghao.springmvc.SessionTimeoutInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

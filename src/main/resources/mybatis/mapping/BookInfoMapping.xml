@@ -37,4 +37,12 @@
         from book_info
     </select>
 
+    <select id="queryBySearchword" resultType="BookInfoModel">
+        select
+        <include refid="fields"/>
+        from book_info
+        where bookname like concat(concat('%',#{searchword}),'%')
+        limit #{limit} offset #{offset}
+    </select>
+
 </mapper>

@@ -155,6 +155,25 @@ img {
 	width: 350px;
 }
 
+#main .corbenbold {
+    font-family: 'CorbenBold';
+    font-size: 22px;
+    font-weight: bold;
+    color: #9d7912;
+}
+
+#main .button{
+    background-color: #ff7d0a;
+    color: #ffffff;
+    width: 100%;
+    border: 1px solid #ff7d0a;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'CorbenBold';
+    font-size: 22px;
+    font-weight: bold;
+}
+
 #adbox {
 	background: #ffffff url(../images/bottom-shadow-headliner.jpg) no-repeat center bottom;
 	height: 371px;

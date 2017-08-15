@@ -20,17 +20,17 @@
         <div class="login-input-box">
             <span class="icon icon-user"></span>
             <f:input path="nickname"/>
+            <f:errors path="nickname" cssStyle="font-size:x-small;color: #cc2f1b;"/>
         </div>
         <div class="login-input-box">
             <span class="icon icon-email"></span>
             <f:input path="email"/>
+            <f:errors path="email" cssStyle="font-size:x-small;color: #cc2f1b;"/>
         </div>
         <div class="login-input-box">
             <span class="icon icon-password"></span>
             <f:password path="password"/>
-        </div>
-        <div class="remember-box">
-            <label><input type="checkbox">&nbsp;记住我</label>
+            <f:errors path="password" cssStyle="font-size:x-small;color: #cc2f1b;"/>
         </div>
         <div class="login-input-box">
             <input class="login-button" type="submit" value="登录">

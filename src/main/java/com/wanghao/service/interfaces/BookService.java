@@ -14,4 +14,8 @@ public interface BookService {
 
     //得到book_info表中一共有多少条数据
     int getBookCount();
+
+    List<BookInfoModel> searchAsync(String searchword, int limit, int offset);
+
+    List<BookInfoModel> search(String searchword, int limit, int offset);
 }
