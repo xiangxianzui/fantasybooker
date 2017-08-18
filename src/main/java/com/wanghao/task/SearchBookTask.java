@@ -1,17 +1,13 @@
 package com.wanghao.task;
 
-import com.wanghao.common.Constant;
 import com.wanghao.db.dao.BookInfoDao;
 import com.wanghao.db.model.BookInfoModel;
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
 import java.util.List;
-import java.util.Observable;
 import java.util.concurrent.Callable;
 
 /**

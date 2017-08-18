@@ -41,6 +41,13 @@
         from user_info
     </select>
 
+    <select id="queryByRegisterTime" resultType="UserInfoModel">
+        select
+        <include refid="fields"/>
+        from user_info
+        where activated = 0 and register_time &lt; #{nowTime}
+    </select>
+
     <update id="updateActivatedByNickname">
         UPDATE user_info
         SET activated = #{activated}

@@ -5,7 +5,8 @@ package com.wanghao.service.enums;
  */
 public enum EmailType {
     REGISTER_SUCCESS(0, "注册成功激活邮件"),
-    FIND_PASSWORD(1, "找回密码邮件");
+    FIND_PASSWORD(1, "找回密码邮件"),
+    ACTIVATION_NOTIFY(2, "提醒激活邮件");
 
     public final int VALUE;
     public final String EXTVALUE;

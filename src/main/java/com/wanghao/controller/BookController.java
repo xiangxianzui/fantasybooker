@@ -1,11 +1,10 @@
 package com.wanghao.controller;
 
 import com.alibaba.fastjson.JSONArray;
-import com.wanghao.common.Constant;
+import com.wanghao.util.Constant;
 import com.wanghao.controller.bean.SearchBean;
 import com.wanghao.db.model.BookInfoModel;
 import com.wanghao.service.interfaces.BookService;
-import com.wanghao.task.SearchBookTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import sun.org.mozilla.javascript.internal.json.JsonParser;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.wanghao.task;
 
-import com.wanghao.common.Constant;
+import com.wanghao.util.Constant;
 import com.wanghao.service.enums.EmailType;
 import com.wanghao.task.bean.EmailInfoBean;
 import org.apache.log4j.Logger;
@@ -75,6 +75,11 @@ public class EmailTask extends Observable implements Runnable {
         if(emailType == EmailType.FIND_PASSWORD.value()){//邮件类型为找回密码邮件
             subject = "【fantasybooker】找回密码";
             content = "尊敬的用户您好, 感谢您对fantasybooker支持，点击链接找回您的密码："+passwordUrl;
+        }
+        if(emailType == EmailType.ACTIVATION_NOTIFY.value()){//用户注册后未激活，提醒激活邮件
+            subject = "【fantasybooker】提醒激活";
+            content = "尊敬的用户您好, 感谢您对fantasybooker支持，系统检测到您尚未激活账户，为了不影响您的正常使用，请点击链接激活您的账户："
+            + activationUrl;
         }
 
         // 4. Subject: 邮件主题

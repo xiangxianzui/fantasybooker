@@ -1,4 +1,4 @@
-package com.wanghao.common;
+package com.wanghao.util;
 
 /**
  * Created by wanghao on 8/6/17.

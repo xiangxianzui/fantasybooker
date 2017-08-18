@@ -1,6 +1,6 @@
 package com.wanghao.controller;
 
-import com.wanghao.common.Constant;
+import com.wanghao.util.Constant;
 import com.wanghao.db.model.UserInfoModel;
 import com.wanghao.service.enums.LoginMsg;
 import com.wanghao.service.enums.LogoutMsg;

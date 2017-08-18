@@ -1,6 +1,6 @@
 package com.wanghao.springmvc;
 
-import com.wanghao.common.Constant;
+import com.wanghao.util.Constant;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
