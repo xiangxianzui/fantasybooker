@@ -13,9 +13,9 @@ public class JobInfoModel {
 
     private long userId;
 
-    private String jobExtension;
+    private String jobExt;
 
-    private String jobDescription;
+    private String jobDesc;
 
     // 当前重试次数
     private int runCount;
@@ -24,10 +24,10 @@ public class JobInfoModel {
     private int maxCount;
 
     // 任务状态
-    private JobStatus jobStatus;
+    private int jobStatus;
 
     // 任务类型
-    private JobType jobType;
+    private int jobType;
 
     // 创建时间
     private Date createTime;
@@ -51,20 +51,20 @@ public class JobInfoModel {
         this.userId = userId;
     }
 
-    public String getJobExtension() {
-        return jobExtension;
+    public String getJobExt() {
+        return jobExt;
     }
 
-    public void setJobExtension(String jobExtension) {
-        this.jobExtension = jobExtension;
+    public void setJobExt(String jobExt) {
+        this.jobExt = jobExt;
     }
 
-    public String getJobDescription() {
-        return jobDescription;
+    public String getJobDesc() {
+        return jobDesc;
     }
 
-    public void setJobDescription(String jobDescription) {
-        this.jobDescription = jobDescription;
+    public void setJobDesc(String jobDesc) {
+        this.jobDesc = jobDesc;
     }
 
     public int getRunCount() {
@@ -83,19 +83,19 @@ public class JobInfoModel {
         this.maxCount = maxCount;
     }
 
-    public JobStatus getJobStatus() {
+    public int getJobStatus() {
         return jobStatus;
     }
 
-    public void setJobStatus(JobStatus jobStatus) {
+    public void setJobStatus(int jobStatus) {
         this.jobStatus = jobStatus;
     }
 
-    public JobType getJobType() {
+    public int getJobType() {
         return jobType;
     }
 
-    public void setJobType(JobType jobType) {
+    public void setJobType(int jobType) {
         this.jobType = jobType;
     }
 

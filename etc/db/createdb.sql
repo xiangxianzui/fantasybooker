@@ -45,3 +45,17 @@ CREATE TABLE `job_info` (
   PRIMARY KEY (`id`),
   INDEX `idx_userId_type` (`user_id`,`job_type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='任务表'
+
+CREATE TABLE `user_book_watch` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `book_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '被关注图书的id',
+  `user_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '用户的id',
+  `price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '关注时的图书价格',
+  `amount` int(10) NOT NULL DEFAULT 0 COMMENT '关注时的图书剩余货量',
+  `discount` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '关注时的图书折扣',
+  `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00' COMMENT '创建时间',
+  `watch_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '关注状态',
+  PRIMARY KEY (`id`),
+  INDEX `idx_book` (`book_id`),
+  INDEX `idx_user` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='用户关注图书表'

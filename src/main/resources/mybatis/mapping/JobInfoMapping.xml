@@ -6,10 +6,29 @@
         id,user_id as userId,job_ext as jobExt,job_desc as jobDesc,run_count as runCount,max_count as maxCount,job_status as jobStatus,job_type as jobType,create_time as createTime,update_time as updateTime
     </sql>
 
+    <insert id="save" parameterType="JobInfoModel" keyProperty="id" useGeneratedKeys="true">
+        insert into job_info(user_id,job_ext,job_desc,run_count,max_count,job_status,job_type,create_time,update_time)
+        values(#{userId},#{jobExt},#{jobDesc},#{runCount},#{maxCount},#{jobStatus},#{jobType},#{createTime},#{updateTime})
+    </insert>
+
     <select id="findById" resultType="JobInfoModel">
         select
         <include refid="fields"/>
         from job_info where id = #{id}
     </select>
+
+    <select id="queryAll" resultType="JobInfoModel">
+        select
+        <include refid="fields"/>
+        from job_info
+    </select>
+
+    <update id="updateById">
+        UPDATE job_info
+        SET run_count = #{runCount},
+        job_status = #{jobStatus},
+        update_time = #{updateTime}
+        WHERE id = #{id}
+    </update>
 
 </mapper>

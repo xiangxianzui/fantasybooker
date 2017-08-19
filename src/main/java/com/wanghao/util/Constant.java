@@ -34,4 +34,7 @@ public class Constant {
     public static final int PAGINATION_LIMIT = 50;
 
     /* 分页相关 结束 */
+
+    //每个job最多执行次数
+    public static final int JOB_MAX_COUNT = 3;
 }
