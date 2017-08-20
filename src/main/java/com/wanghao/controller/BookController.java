@@ -8,6 +8,7 @@ import com.wanghao.service.interfaces.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,4 +66,18 @@ public class BookController {
         String jsonStr = JSONArray.toJSONString(books);
         return jsonStr;
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ModelAndView viewBookDetail(@PathVariable long id){
+        BookInfoModel book = bookService.viewBookDetail(id);
+        if(book != null){
+            ModelAndView mav = new ModelAndView("book/detail");
+            mav.addObject(Constant.CUR_BOOK, book);
+            return mav;
+        }
+        else {
+            return new ModelAndView("error/other");
+        }
+    }
+
 }

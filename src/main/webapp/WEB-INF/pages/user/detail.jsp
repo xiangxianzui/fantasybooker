@@ -38,14 +38,13 @@
                         <f:input path="registerTime" disabled="true" cssClass="form-control"/>
                     </div>
                     <br>
-                    <input type="submit" value="更改" class="button"/>
+                    <input type="submit" value="更新" class="button"/>
                 </f:form>
-                ${result}
             </div>
         </div> <!-- /#contents -->
         <jsp:include page="../common/_footer.jsp"/>
     </div> <!-- /#page -->
 </div> <!-- /#background -->
-
+<jsp:include page="../common/_foot.jsp"/>
 </body>
 </html>

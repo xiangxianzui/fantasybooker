@@ -18,4 +18,6 @@ public interface BookService {
     List<BookInfoModel> searchAsync(String searchword, int limit, int offset);
 
     List<BookInfoModel> search(String searchword, int limit, int offset);
+
+    BookInfoModel viewBookDetail(long id);
 }

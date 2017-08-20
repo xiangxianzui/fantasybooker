@@ -468,3 +468,38 @@ img {
     display: none;
 }
 
+/* 商品详情页 */
+.detail {
+    color: #9d7912;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: justify;
+}
+
+.detail .row-div {
+    margin-bottom: 5px;
+}
+
+.detail h3{
+    font-size: large;
+}
+
+.detail button{
+    background-color: #ff7d0a;
+    color: #ffffff;
+    width: 100%;
+    height: 30px;
+    border: 1px solid #ff7d0a;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.detail-a {
+    color: #9d7912;
+    text-decoration: none;
+}
+.detail-a:hover{
+    color: #f9f9f5;
+    text-shadow: 1px 1px 0 #a8840b;
+}
+

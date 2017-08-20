@@ -83,5 +83,10 @@ public class BookServiceImpl implements BookService {
         return bookInfoDao.queryBySearchword(searchword, limit, offset);
     }
 
+    @Override
+    public BookInfoModel viewBookDetail(long id) {
+        return bookInfoDao.findById(id);
+    }
+
 
 }

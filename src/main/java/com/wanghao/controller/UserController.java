@@ -6,6 +6,7 @@ import com.wanghao.service.enums.LoginMsg;
 import com.wanghao.service.enums.LogoutMsg;
 import com.wanghao.service.enums.RegisterMsg;
 import com.wanghao.service.interfaces.UserService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -73,15 +74,26 @@ public class UserController {
     public String login(HttpServletRequest req, ModelMap model,
                         @Validated @ModelAttribute(Constant.LOGIN_USER) UserInfoModel loginUser,
                         BindingResult br) {//验证结果一定要紧跟@Validated参数后面写
+        String redirectUrl = req.getParameter("redirect");
         if (br.hasErrors()) {
             return "user/login";
         } else {
             String result = userService.login(loginUser, req);
             if (result.equals(LoginMsg.SUCCESS_NICKNAME.extValue())) {
-                return "redirect:../index";
+                if(!StringUtils.isBlank(redirectUrl)){
+                    return "redirect:"+redirectUrl;
+                }
+                else{
+                    return "redirect:../index";
+                }
             }
             if (result.equals(LoginMsg.SUCCESS_EMAIL.extValue())) {
-                return "redirect:../index";
+                if(!StringUtils.isBlank(redirectUrl)){
+                    return "redirect:"+redirectUrl;
+                }
+                else{
+                    return "redirect:../index";
+                }
             }
             if (result.equals(LoginMsg.FAIL_NO_USER.extValue())) {
                 model.addAttribute("result", result);
@@ -154,8 +166,7 @@ public class UserController {
             return mav;
         }
         else{
-            ModelAndView mav = new ModelAndView("error/other");
-            return mav;
+            return new ModelAndView("error/other");
         }
     }
 
@@ -165,6 +176,6 @@ public class UserController {
                                    @ModelAttribute(Constant.LOGIN_USER) UserInfoModel loginUser){
         String result = userService.updateUserDetail(loginUser);
         model.addAttribute("result", result);
-        return "user/detail";
+        return "redirect:"+userCode;
     }
 }

@@ -21,11 +21,31 @@
                 <a href="/user/register">注册</a>
             </c:when>
             <c:otherwise>
-                <a href="<c:url value="/user/${loginUser.userCode}" />">${loginUser.nickname}</a>
-                |
-                <a href="/user/logout">退出</a>
+                <div class="btn-group">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                        ${loginUser.nickname}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="/user/${loginUser.userCode}">个人中心</a>
+                        </li>
+                        <li>
+                            <a href="#">我的关注</a>
+                        </li>
+                        <li>
+                            <a href="#">我的订单</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/user/logout">退出登录</a>
+                        </li>
+                    </ul>
+                </div>
             </c:otherwise>
         </c:choose>
+        |
+        <a href="">购物车</a>
     </span>
     <a href="/index" id="logo"></a> <!-- /#logo -->
     <ul id="navigation">

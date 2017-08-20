@@ -16,6 +16,10 @@ public class Constant {
     public static final String RESET_PSW_USER = "resetPswUser";
     /* UserController相关 结束 */
 
+    /* BookController相关 开始 */
+    public static final String CUR_BOOK = "curBook";
+    /* BookController相关 结束 */
+
     /* EmailTask相关 开始 */
     public static final String EMAIL_ACCOUNT = "wh15895877701@126.com";
 

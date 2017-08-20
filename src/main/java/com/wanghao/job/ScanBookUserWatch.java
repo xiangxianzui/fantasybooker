@@ -52,7 +52,7 @@ public class ScanBookUserWatch {
     private JobInfoDao jobInfoDao;
 
     /* 每小时执行一次  0 0 0/1 * * ? */
-    @Scheduled(cron = "0 0/1 0/1 * * ?")
+    @Scheduled(cron = "0 0 0/1 * * ?")
     public void scanUserBookWatch(){
         logger.info("执行定时任务:扫描表user_book_watch");
         List<UserBookWatchModel> watches = userBookWatchDao.queryAll();
@@ -65,7 +65,7 @@ public class ScanBookUserWatch {
                 long bookId = watch.getBookId();
                 BookInfoModel book = bookInfoDao.findById(bookId);
                 double watchPrice = watch.getPrice().doubleValue() * watch.getDiscount().doubleValue();
-                double nowPrice = book.getPrice().doubleValue()*book.getDiscount().doubleValue();
+                double nowPrice = book.getPrice().doubleValue() * book.getDiscount().doubleValue();
                 //这本书是否比关注时降价了
                 boolean isPrice = watchPrice-nowPrice > 0;
                 //这本书是否只剩不到10本了
@@ -95,13 +95,17 @@ public class ScanBookUserWatch {
     public static String buildJobExt(UserBookWatchModel watch, BookInfoModel book){
         double watchPrice = watch.getPrice().doubleValue() * watch.getDiscount().doubleValue();
         int watchAmount = watch.getAmount();
-        double nowPrice = book.getPrice().doubleValue()*book.getDiscount().doubleValue();
+        double nowPrice = book.getPrice().doubleValue() * book.getDiscount().doubleValue();
         int nowAmount = book.getAmount();
         //这本书是否比关注时降价了
         boolean isPrice = (watchPrice-nowPrice) > 0;
         //这本书是否只剩不到10本了
         boolean isAmount = nowAmount <= 10;
         JSONObject jobExtNode = new JSONObject();
+        JSONObject bookNode = new JSONObject();
+        bookNode.put("id", book.getId());
+        bookNode.put("name", book.getBookname());
+        bookNode.put("author", book.getAuthor());
         JSONObject priceNode = new JSONObject();
         priceNode.put("watch", watchPrice);
         priceNode.put("now", nowPrice);
@@ -110,6 +114,7 @@ public class ScanBookUserWatch {
         amountNode.put("watch", watchAmount);
         amountNode.put("now", nowAmount);
         amountNode.put("isAmount", isAmount);
+        jobExtNode.put("book", bookNode);
         jobExtNode.put("price", priceNode);
         jobExtNode.put("amount", amountNode);
         return JSONObject.toJSONString(jobExtNode);
