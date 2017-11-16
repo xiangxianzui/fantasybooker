@@ -48,6 +48,7 @@
             <mvc:exclude-mapping path="/resources/**" />
             <mvc:exclude-mapping path="/book/**" />
             <mvc:exclude-mapping path="/admin/**" />
+            <mvc:exclude-mapping path="/shop/**" />
             <bean class="com.wanghao.springmvc.SessionTimeoutInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

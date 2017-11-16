@@ -5,6 +5,7 @@ import com.wanghao.db.model.JobInfoModel;
 import com.wanghao.job.enums.JobStatus;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
@@ -25,13 +26,8 @@ public class ScanJobInfo {
     @Autowired
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
-    public ThreadPoolTaskExecutor getThreadPoolTaskExecutor() {
-        return threadPoolTaskExecutor;
-    }
-
-    public void setThreadPoolTaskExecutor(ThreadPoolTaskExecutor threadPoolTaskExecutor) {
-        this.threadPoolTaskExecutor = threadPoolTaskExecutor;
-    }
+    @Resource
+    private ApplicationContext applicationContext;
 
     /* http://cron.qqe2.com/这个网站生成cron字符串 */
     /* 用途一：可以用来在每月最后一天执行定时任务，
@@ -48,7 +44,7 @@ public class ScanJobInfo {
     private JobInfoDao jobInfoDao;
 
     /* 每小时执行一次  0 0 0/1 * * ? */
-     @Scheduled(cron = "0 0 0/1 * * ?")
+     @Scheduled(fixedRate = 600000)
     public void scanJobInfo(){
          logger.info("执行定时任务:扫描job_info表");
          List<JobInfoModel> jobs = jobInfoDao.queryAll();
@@ -62,11 +58,16 @@ public class ScanJobInfo {
              int maxCount = job.getMaxCount();
              if(jobStatus == JobStatus.FAIL.value() && runCount <= maxCount){
                  //将该job扔进线程池
-                 new Thread(new JobExecutor(threadPoolTaskExecutor, job)).start();
+
+                 JobExecutor jobExecutor = (JobExecutor)applicationContext.getBean("jobExecutor", job);
+                 threadPoolTaskExecutor.execute(jobExecutor);
+                 //new Thread(new JobExecutor(threadPoolTaskExecutor, job)).start();
              }
              if(jobStatus == JobStatus.WAIT.value() && runCount <= maxCount){
                  //将该job扔进线程池
-                 new Thread(new JobExecutor(threadPoolTaskExecutor, job)).start();
+                 JobExecutor jobExecutor = (JobExecutor)applicationContext.getBean("jobExecutor", job);
+                 threadPoolTaskExecutor.execute(jobExecutor);
+                 //new Thread(new JobExecutor(threadPoolTaskExecutor, job)).start();
              }
          }
          logger.info("执行定时任务结束");

@@ -36,9 +36,11 @@ public class Constant {
 
     //后端查数据库每次100条
     public static final int PAGINATION_LIMIT = 50;
-
     /* 分页相关 结束 */
 
     //每个job最多执行次数
     public static final int JOB_MAX_COUNT = 3;
+
+    //购物车
+    public static final String SHOPPING_CART = "shoppingCart";
 }

@@ -61,7 +61,7 @@
                         </div>
                         <div class="row row-div">
                             <div class="col-md-3"><button title="该商品一旦降价，系统会以邮件和站内信的形式通知您"><i class="fa fa-heart"></i> 关注</button></div>
-                            <div class="col-md-3"><button><i class="fa fa-shopping-cart"></i> 加入购物车</button></div>
+                            <div class="col-md-3"><button class="shopping-cart"><i class="fa fa-shopping-cart"></i> 加入购物车</button></div>
                             <div class="col-md-3"><button><i class="fa fa-shopping-bag"></i> 立即购买</button></div>
                             <div class="col-md-3"></div>
                         </div>
@@ -79,6 +79,24 @@
 <script src='<%=request.getContextPath()%>/resources/js/jquery.spinner.js' language='JavaScript' charset='utf-8'></script>
 <script type="text/javascript">
     $('.spinner').spinner();
+</script>
+<script type="text/javascript">
+    $('.shopping-cart').on('click', function(){
+        var postData = {
+            bookId: ${curBook.id},
+            count: 10
+        };
+        $.ajax({
+            url:'/shop/shoppingCart',
+            type:'POST',
+            dataType:'json',
+            contentType:'application/json', //contentType很重要
+            data:JSON.stringify(postData),
+            success:function(result){
+                window.location.reload();
+            }
+        });
+    });
 </script>
 </body>
 </html>

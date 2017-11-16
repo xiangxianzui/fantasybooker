@@ -7,7 +7,10 @@ import com.wanghao.job.enums.JobStatus;
 import com.wanghao.service.interfaces.JobService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,19 +22,18 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by wanghao on 8/18/17.
  */
+@Component("jobExecutor")
+@Scope("prototype")
 public class JobExecutor implements Runnable{
     private static final Logger logger = Logger.getLogger(JobExecutor.class);
 
     @Resource
     private JobService jobService;
 
+    @Autowired
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
-    private JobInfoModel job;
 
-    public JobExecutor(ThreadPoolTaskExecutor threadPoolTaskExecutor, JobInfoModel job) {
-        this.threadPoolTaskExecutor = threadPoolTaskExecutor;
-        this.job = job;
-    }
+    private JobInfoModel job;
 
     @Override
     public synchronized void run() {

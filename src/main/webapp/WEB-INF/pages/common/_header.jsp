@@ -1,3 +1,9 @@
+<%@ page import="org.apache.commons.lang.StringUtils" %>
+<%@ page import="com.wanghao.util.Constant" %>
+<%@ page import="com.alibaba.fastjson.JSONObject" %>
+<%@ page import="com.alibaba.fastjson.JSON" %>
+<%@ page import="java.math.BigDecimal" %>
+<%@ page import="com.alibaba.fastjson.JSONArray" %>
 <%--
   Created by IntelliJ IDEA.
   User: wanghao
@@ -45,7 +51,52 @@
             </c:otherwise>
         </c:choose>
         |
-        <a href="">购物车</a>
+        <div class='btn-group'>
+            <a href='' class='dropdown-toggle' data-toggle='dropdown'>
+                购物车
+                <span class='caret'></span>
+            </a>
+            <ul class='dropdown-menu' role='menu'>
+                <li>
+                    <a href='#' class='btn'>bookname: ¥9.99 x 10</a>
+                </li>
+                <li class='divider'></li>
+                <li>
+                    <a class='btn'>totalprice</a>
+                </li>
+                <li class='divider'></li>
+                <li>
+                    <a href='' class='btn'>结算</a>
+                </li>
+                <%
+                    Cookie[] cookies = request.getCookies();
+                    String shoppingCart = null;
+                    for (Cookie cookie : cookies){
+                        if(StringUtils.equals(cookie.getName(), Constant.SHOPPING_CART)){
+                            shoppingCart = cookie.getValue();
+                            break;
+                        }
+                    }
+                    if(!StringUtils.isBlank(shoppingCart)){
+                        JSONObject jsonObject = JSON.parseObject(shoppingCart);
+                        JSONArray cartItems = jsonObject.getJSONArray("cartItems");
+                        BigDecimal totalPrice = jsonObject.getBigDecimal("totalPrice");
+                        StringBuilder html = new StringBuilder();
+                        for(int i=0; i<cartItems.size(); i++){
+                            /*JSONObject book = (JSONObject)cartItems.get(i).;
+                            String bookname = cartItems[i]
+                            html.append("<li><a href='' class='btn'>")*/
+                        }
+                        html.append("<li></li>");
+                        out.write(html.toString());
+                    }
+                    else{
+                        out.write("<li>购物车还是空的</li>");
+                    }
+                %>
+            </ul>
+        </div>
+
     </span>
     <a href="/index" id="logo"></a> <!-- /#logo -->
     <ul id="navigation">

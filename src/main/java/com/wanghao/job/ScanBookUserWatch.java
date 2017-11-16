@@ -31,17 +31,6 @@ import java.util.List;
 public class ScanBookUserWatch {
     private static final Logger logger = Logger.getLogger(ScanBookUserWatch.class);
 
-    @Autowired
-    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
-
-    public ThreadPoolTaskExecutor getThreadPoolTaskExecutor() {
-        return threadPoolTaskExecutor;
-    }
-
-    public void setThreadPoolTaskExecutor(ThreadPoolTaskExecutor threadPoolTaskExecutor) {
-        this.threadPoolTaskExecutor = threadPoolTaskExecutor;
-    }
-
     @Resource
     private UserBookWatchDao userBookWatchDao;
 
@@ -52,7 +41,7 @@ public class ScanBookUserWatch {
     private JobInfoDao jobInfoDao;
 
     /* 每小时执行一次  0 0 0/1 * * ? */
-    @Scheduled(cron = "0 0 0/1 * * ?")
+    @Scheduled(fixedRate = 600000)
     public void scanUserBookWatch(){
         logger.info("执行定时任务:扫描表user_book_watch");
         List<UserBookWatchModel> watches = userBookWatchDao.queryAll();

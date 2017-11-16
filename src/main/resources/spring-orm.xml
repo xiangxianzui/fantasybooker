@@ -12,7 +12,7 @@
 
     <!-- 引入配置文件 比如db.properties -->
     <context:property-placeholder location="classpath*:*.properties" ignore-unresolvable="true"/>
-
+`
     <context:annotation-config/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
